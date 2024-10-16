@@ -22,7 +22,7 @@ type invalidInputResponse[T any] struct {
 	ExpectedInput T
 }
 
-type responseError struct {
+type ResponseError struct {
 	Error string `json:"error"`
 }
 
@@ -119,7 +119,7 @@ func HandleDivide(w http.ResponseWriter, r *http.Request) {
 
 	if inputOperands.Number2 == 0 {
 		w.WriteHeader(http.StatusBadRequest)
-		errResponse := responseError{Error: "Denominator cannot be zero."}
+		errResponse := ResponseError{Error: "Denominator cannot be zero."}
 		json.NewEncoder(w).Encode(errResponse)
 		return
 	}
